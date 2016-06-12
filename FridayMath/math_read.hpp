@@ -90,7 +90,7 @@ private:
                 
             } while (isdigit(last) || last == '.');
             
-            if (numStr != "") {
+            if (numStr != "-") {
                 curVal = strtod(numStr.c_str(), 0);
                 return tok::num;
             } else {
@@ -259,6 +259,7 @@ private:
             
             int nextPrec = getTokPrec(curtok);
             if (curPrec < nextPrec) {
+                
                 RHS = parseInfixOp(curPrec + 1, std::move(RHS));
                 if (!RHS)
                     return nullptr;
@@ -294,6 +295,7 @@ private:
                 return std::move(LHS);
         }
         
+        
         return LogError("unknown operator");
     }
     
@@ -306,7 +308,9 @@ private:
     
     std::unique_ptr<Expr> parseP() {
         getNextTok(); // eat '(';
+        
         auto expr = parseExpr();
+        
         if (curtok != ')') // eat ')';
             return LogError("Expected ')'");
         getNextTok();
@@ -316,6 +320,7 @@ private:
     std::unique_ptr<Expr> parse() {
         switch (curtok) {
             case tok::num:
+                
                 return parseNum();
             case tok::var:
                 return parseVar();
