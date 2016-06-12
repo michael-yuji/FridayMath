@@ -26,7 +26,6 @@
 		CE059F051D0B99D1005E32DF /* FridayMath */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FridayMath; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE059F081D0B99D1005E32DF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		CE059F0F1D0B99DD005E32DF /* math_read.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = math_read.hpp; sourceTree = "<group>"; };
-		CE059F101D0B9BF4005E32DF /* Integrate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Integrate.hpp; path = ../Integrate.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +60,6 @@
 			children = (
 				CE059F081D0B99D1005E32DF /* main.cpp */,
 				CE059F0F1D0B99DD005E32DF /* math_read.hpp */,
-				CE059F101D0B9BF4005E32DF /* Integrate.hpp */,
 			);
 			path = FridayMath;
 			sourceTree = "<group>";

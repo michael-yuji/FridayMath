@@ -10,12 +10,8 @@
 #include "math_read.hpp"
 
 int main(int argc, const char * argv[]) {
-    Scanner math_scanner = Scanner();
-    std::unique_ptr<Scanner::Expr> z = math_scanner.parse("x + y + 2");
-    std::unique_ptr<Scanner::Expr> y = math_scanner.parse("20 + x * exp ( 2 )");
-    math_scanner.setVariable("y", std::move(y));
-    math_scanner.setVariable("x", 10);
-    
-    printf("result is: %f\n", z->eval());
+    Scanner math_scanner = Scanner();    
+    std::unique_ptr<Scanner::Expr> mu = math_scanner.parse("( 0.5 * 10 ^ -1 * 10 ^ -2 ) ^ 2 * pi ");
+    std::cout << mu->eval() << std::endl;
     return 0;
 }

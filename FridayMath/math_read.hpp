@@ -31,7 +31,7 @@ namespace tok {
         mul = -4,   div = -5,   pow = -6,
         frac = -7,  sqrt = -8,  exp = -9,
         ln = -10,   log = -11,
-        var = -15,  num = -20
+        var = -15,  num = -20,
     };
 }
 
@@ -66,8 +66,9 @@ private:
                 return 20;
             case tok::mul:
             case tok::div:
-            case tok::pow:
                 return 30;
+            case tok::pow:
+                return 35;
             case tok::frac:
                 return 40;
         }
@@ -80,7 +81,7 @@ private:
         while (isspace(last))
             last = getc();
         
-        if (isdigit(last) || last == '.') {
+        if (isdigit(last) || last == '.' || last == '-') {
             std::string numStr;
             
             do {
@@ -89,8 +90,12 @@ private:
                 
             } while (isdigit(last) || last == '.');
             
-            curVal = strtod(numStr.c_str(), 0);
-            return tok::num;
+            if (numStr != "") {
+                curVal = strtod(numStr.c_str(), 0);
+                return tok::num;
+            } else {
+                return tok::sub;
+            }
         }
         
         switch (last) {
@@ -212,7 +217,6 @@ private:
     };
     
     std::unique_ptr<Expr> LogError(std::string msg) {
-        //        std::cout << "Error: " << msg << std::endl;
         throw CannotParseException(msg);
         return nullptr;
     }
@@ -352,15 +356,15 @@ public:
         varMap[var] = std::move(val);
     }
     
-    Scanner() : s(""), position(0) {}
+    Scanner() : s(""), position(0) { setVariable("pi", M_PI); }
     
     std::unique_ptr<Expr> parse(std::string str) {
         s = str;
-//        std::cout << s << std::endl;
         position = 0;
         try {
             return std::move(run());
         } catch (CannotParseException &e) {
+            std::cout << e.what() << std::endl;
             throw e;
         }
     }
