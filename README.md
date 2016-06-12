@@ -2,6 +2,8 @@
 
 Simple Nature Math Expression Parser that support variables/functions.
 
+Supported symbols: "+", "-", "*", "/", "^", "!", "pi", "exp", "log", "ln", "sqrt"
+
 Expressions only need to `compile` (nope, but kinda similar) once, and reuse over and over.
 
 For example:
